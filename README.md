@@ -1,24 +1,32 @@
-# README
+# Rails API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Create the App
+- Create repo on desktop
+- Add remote repo
+- Create default branch
+- Push to the default branch
 
-Things you may want to cover:
+### Backend Structure
+- Create database
+- Install RSpec
+- Generate resource
+- Remove unnecessary files
+- Migrate
+- Check that the app is working
 
-* Ruby version
+### Seeds
+- Creating seeds is a shortcut for sharing db content
+- Add Ruby code to the `seeds.rb` file
+- $ rails db:seed
 
-* System dependencies
 
-* Configuration
+### Second Driver
+- Clone the repo
+- $ bundle
+- $ yarn
+- $ rails db:create
+- $ rails db:migrate
+- $ rails db:seed (if applicable)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Other Swaps
+- $ git pull
