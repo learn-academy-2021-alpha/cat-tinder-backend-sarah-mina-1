@@ -30,3 +30,13 @@
 
 ### Other Swaps
 - $ git pull
+
+
+### API Endpoints
+
+Endpoints are URLs that are used to make requests
+
+Requests specs:
+arrange - requirements of the situation
+act - API request
+assert - on response status and body (content)
