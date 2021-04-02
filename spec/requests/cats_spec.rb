@@ -91,4 +91,51 @@ RSpec.describe "Cats", type: :request do
       expect(response).to have_http_status(422)
     end
   end
+
+  describe 'PUT /cats' do
+    it 'edits a cat' do
+      # arrange - there needs to be a cat in the DB to update
+      cat = Cat.create(name: 'Mr. Meow', age: 13, enjoys: 'playing with spaghetti')
+
+      # arrange - the request params are trying to edit that cat
+      update_cat_params = {
+        cat: {
+          name: 'Felix',
+          age: 2,
+          enjoys: 'Walks in the park.'
+        }
+      }
+
+      # act
+      put "/cats/#{cat.id}", params: update_cat_params
+      
+      # assert - on response
+      updated_cat_response = JSON.parse(response.body)
+      expect(updated_cat_response['name']).to eq 'Felix'
+      expect(updated_cat_response['age']).to eq 2
+      expect(updated_cat_response['enjoys']).to eq 'Walks in the park.'
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'DELETE /cats' do
+    it 'deletes a cat' do
+      # arrange - there needs to be a cat in the DB to delete
+      cat = Cat.create(name: 'Mr. Meow', age: 13, enjoys: 'playing with spaghetti')
+      
+      # act
+      delete "/cats/#{cat.id}"
+
+      # assert - db no longer has that record
+      no_cat = Cat.where(id: cat.id)
+      expect(no_cat).to be_empty
+
+      # assert - on delete response
+      delete_response = JSON.parse(response.body)
+      expect(delete_response['name']).to eq 'Mr. Meow'
+      expect(delete_response['age']).to eq 13
+      expect(delete_response['enjoys']).to eq 'playing with spaghetti'
+      expect(response).to have_http_status(200)
+    end
+  end
 end
